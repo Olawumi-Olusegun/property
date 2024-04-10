@@ -2,7 +2,7 @@
 import { API_URL } from "./../constants/index";
 
 // Fecth all properties
-export const fetchProperties = async () => {
+export const fetchProperties = async ({ showFeatured = false } = {}) => {
 
   // Handle case where the domain is not available yet
   if(!API_URL) {
@@ -11,15 +11,17 @@ export const fetchProperties = async () => {
 
     try {
 
-      const response = await fetch(`${API_URL}/properties`, { cache: "no-store" });
+      const response = await fetch(`${API_URL}/properties${showFeatured ? "/featured" : ""}`, { cache: "no-store" });
   
-      const { properties, } =  await response.json();
+      const data =  await response.json();
+
+      console.log(data)
   
       if(!response.ok) {
         throw new Error("Failed to fetch data")
       }
   
-      return properties;
+      return showFeatured ? data.featured : data?.result?.properties;
     } catch (error) {
       return [];
     }

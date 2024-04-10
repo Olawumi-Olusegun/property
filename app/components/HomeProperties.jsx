@@ -11,10 +11,10 @@ const HomeProperties = ({properties}) => {
   return (
     <>
      {/*    <!-- Featured Properties --> */}
-    <section class="bg-blue-50 px-4 pt-6 pb-10">
-      <div class="container-xl lg:container m-auto">
-        <h2 class="text-3xl font-bold text-blue-500 mb-6 py-8 text-center">
-          Featured Properties
+    <section className="bg-blue-50 px-4 pt-6 pb-10">
+      <div className="container-xl lg:container m-auto">
+        <h2 className="text-3xl font-bold text-blue-500 mb-6 py-8 text-center">
+          Recent Properties
         </h2>
         {
         recentProperties.length === 0 ? (
