@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { fetchProperty } from './../../utils/request';
 
 const PropertyEditForm = () => {
-  const { id } = useParams();
+  const { propertyId } = useParams();
   const router = useRouter();
 
   const [mounted, setMounted] = useState(false);
@@ -43,7 +43,7 @@ const PropertyEditForm = () => {
     // Fetch property data for form
     const fetchPropertyData = async () => {
       try {
-        const propertyData = await fetchProperty(id);
+        const propertyData = await fetchProperty(propertyId);
 
         // Check rates for null, if so then make empty string
         if (propertyData && propertyData.rates) {
@@ -120,14 +120,14 @@ const PropertyEditForm = () => {
     try {
       const formData = new FormData(e.target);
 
-      const res = await fetch(`/api/properties/${id}`, {
+      const response = await fetch(`/api/properties/${propertyId}`, {
         method: 'PUT',
         body: formData,
       });
 
-      if (res.status === 200) {
-        router.push(`/properties/${id}`);
-      } else if (res.status === 401 || res.status === 403) {
+      if (response.status === 200) {
+        router.push(`/properties/${propertyId}`);
+      } else if (response.status === 401 || response.status === 403) {
         toast.error('Permission denied');
       } else {
         toast.error('Something went wrong');

@@ -51,3 +51,27 @@ export const fetchSingleProperty = async (propertyId) => {
       return null;
     }
   }
+
+
+  // Fetch single property
+export const fetchProperty =  async (propertyId) => {
+  try {
+    // Handle the case where the domain is not available yet
+    if(!API_URL) {
+      return [];
+    }
+
+    const response = await fetch(`${API_URL}/properties/${propertyId}`, { cache: "no-store" });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    const data = await response.json();
+
+    return data?.property;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
