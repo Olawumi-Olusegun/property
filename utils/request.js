@@ -21,7 +21,7 @@ export const fetchProperties = async ({ showFeatured = false } = {}) => {
         throw new Error("Failed to fetch data")
       }
   
-      return showFeatured ? data.featured : data?.result?.properties;
+      return showFeatured ? data?.featured : data?.result?.properties;
     } catch (error) {
       return [];
     }
@@ -58,7 +58,7 @@ export const fetchProperty =  async (propertyId) => {
   try {
     // Handle the case where the domain is not available yet
     if(!API_URL) {
-      return [];
+      return null;
     }
 
     const response = await fetch(`${API_URL}/properties/${propertyId}`, { cache: "no-store" });
