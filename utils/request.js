@@ -13,13 +13,11 @@ export const fetchProperties = async ({ showFeatured = false } = {}) => {
 
       const response = await fetch(`${API_URL}/properties${showFeatured ? "/featured" : ""}`, { cache: "no-store" });
   
-      const data =  await response.json();
-
-      console.log(data)
-  
       if(!response.ok) {
         throw new Error("Failed to fetch data")
       }
+
+      const data =  await response.json();
   
       return showFeatured ? data?.featured : data?.result?.properties;
     } catch (error) {

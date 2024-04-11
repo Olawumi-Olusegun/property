@@ -6,6 +6,13 @@ const FeaturedProperties = async () => {
     showFeatured: true,
   });
 
+
+  if(!properties) {
+    return [];
+  }
+
+  console.log(properties.length > 0)
+
   return (
     properties.length > 0 && (
       <section className='bg-blue-50 px-4 pt-6 pb-10'>
