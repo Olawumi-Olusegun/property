@@ -67,6 +67,10 @@ export const fetchProperty =  async (propertyId) => {
 
     const data = await response.json();
 
+    if(!data || !data?.property) {
+      return null;
+    }
+
     return data?.property;
   } catch (error) {
     console.log(error);
