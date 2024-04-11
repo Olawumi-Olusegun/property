@@ -5,8 +5,7 @@ import ListingCard from './ListingCard';
 
 const HomeProperties = ({properties}) => {
 
-
-    const recentProperties = properties.sort(() => Math.random() - Math.random()).slice(0, 3);
+    const recentProperties = properties?.sort(() => Math.random() - Math.random())?.slice(0, 3) || [];
 
   return (
     <>

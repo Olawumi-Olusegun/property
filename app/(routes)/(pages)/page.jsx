@@ -9,12 +9,11 @@ export default async function Home() {
 
   const properties = await fetchProperties();
 
-  // const recentProperties = properties.sort(() => Math.random() - Math.random()).slice(0, 3);
-  const recentProperties = properties.slice(0, 3);
-
-  if(!recentProperties) {
-    return null;
+  if(!properties || properties.length === 0) {
+    return [];
   }
+    // const recentProperties = properties.sort(() => Math.random() - Math.random()).slice(0, 3);
+    const recentProperties = properties.slice(0, 3);
 
   return (
     <>
